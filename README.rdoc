@@ -1,3 +1,5 @@
+From my blog: http://codely.me/ruby-on-rails/create-photoblog-uploading-multiple-images-in-rails-4-using-refile-gem/
+
 Uploading multiple files in Ruby on Rails can be a daunting task, specially for the beginners. For single file uploads it’s easy. You just need to add a single column to your database table(model) . Then usually people use Carrierwave or Paperclip gems. But for multiple files we have to deal with it differently. We need to have another model for our file attachments. It’s exactly like having a Comment model for your Post. There will be one to many relationship. One post has many comments. In the same way one post will have many images.
 
 We will be using the Refile gem version 0.5.5 for multiple uploads. It’s the new kid in the block but pretty awesome. It’s easy to use and simple. At the end well create a simple photoblog like the picture below. You can add bootstrap and play with it to make it look beautiful
@@ -17,6 +19,7 @@ Open your Gemfile and add the following lines.
 
 gem "refile", require: 'refile/rails', git: "https://github.com/refile/refile.git"
 gem "refile-mini_magick"
+
 Go to terminal and run
 
 bundle install
@@ -27,12 +30,15 @@ rails g scaffold Post title:string body:text
 Then run migration
 
 rake db:migrate
+
 Now generate a model “Image” to hand image uploads
 
 rails g model Image file_id:string post:references
+
 Run migration
 
 rake db:migrate
+
 While creating the image model we use post:refenerences to add a foreign key to the post model. If you open your /photo_blog/db/schema.rb you’ll find the t.integer  "post_id"  in the images table.  Rails also adds an post_id index to the images table as a reference.
 
 Now open /photo_blog/app/models/image.rb . Include attachment :file and it should like 
