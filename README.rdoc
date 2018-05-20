@@ -1,4 +1,3 @@
-From my blog: http://codely.me/ruby-on-rails/create-photoblog-uploading-multiple-images-in-rails-4-using-refile-gem/
 
 Uploading multiple files in Ruby on Rails can be a daunting task, specially for the beginners. For single file uploads it’s easy. You just need to add a single column to your database table(model) . Then usually people use Carrierwave or Paperclip gems. But for multiple files we have to deal with it differently. We need to have another model for our file attachments. It’s exactly like having a Comment model for your Post. There will be one to many relationship. One post has many comments. In the same way one post will have many images.
 
